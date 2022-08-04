@@ -24,9 +24,10 @@ Simple memory game play in console
 
 ## To-do list:
 * Exception handling
+* Tests
 
 ## Status
 * in progress..
 
-Why i code?
+Why do i code?
 It's fun and can give me financial stability.
