@@ -27,6 +27,8 @@ public class GameMechanics {
 
     private void menu() {
         int choice;
+        boolean exit = false;
+        while (!exit) {
         System.out.println(
                 """
                         1.Display menu
@@ -36,13 +38,12 @@ public class GameMechanics {
                         5.Exit""");
         Scanner scanner = new Scanner(System.in);
         choice = scanner.nextInt();
-        while (true) {
+
             switch (choice) {
                 case 2 -> levelEasy();
                 case 3 -> levelHard();
                 case 4 -> displayScoreTable();
-                case 5 -> System.exit(0);
-                default -> menu();
+                case 5 -> exit = true;
             }
         }
     }
@@ -50,9 +51,8 @@ public class GameMechanics {
     private void levelEasy() {
         String level = "easy";
         int guessChances = 10;
-        Word[][] words = new Word[2][4];
+        Word[][] words = new Word[2][2];
         play(words, level, guessChances);
-        menu();
     }
 
     private void levelHard() {
@@ -60,7 +60,6 @@ public class GameMechanics {
         int guessChances = 15;
         Word[][] words = new Word[2][8];
         play(words, level, guessChances);
-        menu();
     }
 
     private void displayScoreTable() {
@@ -69,7 +68,6 @@ public class GameMechanics {
         } else {
             System.out.println(myFile.readScore(scoreFilePath));
         }
-        menu();
     }
 
     private void play(Word[][] words, String level, int guessChances) {
@@ -145,8 +143,6 @@ public class GameMechanics {
         System.out.println("You solved the memory game after " + guessingTries + " chances. It took you "
                 + guessingTime + " seconds");
         saveScore(guessingTries, guessingTime);
-        displayScoreTable();
-        menu();
     }
 
     private void randomize(Word[][] tab) {
